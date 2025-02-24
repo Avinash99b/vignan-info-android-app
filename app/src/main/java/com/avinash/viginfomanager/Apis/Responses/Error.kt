@@ -1,3 +1,3 @@
 package com.avinash.viginfomanager.Apis.Responses
 
-class AuthToken(val authToken: String)
+class Error(val message:String)

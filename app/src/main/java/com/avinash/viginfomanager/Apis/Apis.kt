@@ -5,9 +5,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Apis {
     companion object{
-        val BASE_URL = "https://vigilant-robot-7f1b7e.netlify.app/.netlify/functions/"
+        private const val BASE_URL = "https://secure-easily-buzzard.ngrok-free.app/"
 
-        val retrofit = Retrofit.Builder()
+        private val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

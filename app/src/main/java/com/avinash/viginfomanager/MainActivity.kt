@@ -12,6 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        startActivity(Intent(this,LoginActivity::class.java))
+        val sharedPreferences = getSharedPreferences("vig", MODE_PRIVATE)
+        if(sharedPreferences.contains("token")) {
+            startActivity(Intent(this, DashboardActivity::class.java))
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        finish()
     }
 }

@@ -10,17 +10,22 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.avinash.viginfomanager.R
 import com.avinash.viginfomanager.databinding.CustomButtonBinding
 
-class Button(context: Context?) : LinearLayout(context) {
+class Button(context: Context?, attrs: AttributeSet, defStyleAttr: Int = 0) :
+    LinearLayout(context, attrs, defStyleAttr) {
     private var rootView: CustomButtonBinding =
         CustomButtonBinding.inflate(LayoutInflater.from(context), this, true)
 
-    init {
+    //Call super(attrs) to send the attributes to the view group or else the attributes will not be applied
+    //And also null pointer exception will be thrown for id's
 
+    init {
         LayoutTransition().apply {
             enableTransitionType(LayoutTransition.CHANGING)
             setDuration(250)
@@ -56,17 +61,21 @@ class Button(context: Context?) : LinearLayout(context) {
         return super.onTouchEvent(event)
     }
 
-    constructor(context: Context?, attrs: AttributeSet) : this(context) {
+    constructor(context: Context?, attrs: AttributeSet) : this(context, attrs, 0) {
         val typedArray = context?.obtainStyledAttributes(attrs, R.styleable.Button)
         val title = typedArray?.getString(R.styleable.Button_text)
         setButtonTitle(title ?: "")
-        val color = typedArray?.getColor(R.styleable.Button_color,
-            ContextCompat.getColor(context, R.color.black))
+        val color = typedArray?.getColor(
+            R.styleable.Button_color,
+            ContextCompat.getColor(context, R.color.black)
+        )
         if (color != null)
             setButtonColor(color)
 
-        val textColor = typedArray?.getColor(R.styleable.Button_textColor,
-            ContextCompat.getColor(context, R.color.white))
+        val textColor = typedArray?.getColor(
+            R.styleable.Button_textColor,
+            ContextCompat.getColor(context, R.color.white)
+        )
 
         if (textColor != null)
             setTextColor(textColor)
