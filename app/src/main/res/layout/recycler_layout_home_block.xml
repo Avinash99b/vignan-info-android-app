@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="@dimen/_20sdp"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/block_image_view"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_120sdp"
+        app:shapeAppearanceOverlay="@style/HomeBlockLayoutStyle"
+        android:scaleType="centerCrop"
+        android:src="@raw/a_block"/>
+
+    <TextView
+        android:id="@+id/block_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A Block"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_5sdp"/>
+
+    <TextView
+        android:id="@+id/block_des_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Block"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_5sdp"/>
+</LinearLayout>

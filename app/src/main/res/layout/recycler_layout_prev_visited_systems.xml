@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:background="@android:color/transparent">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/systemStatusImage"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:background="@color/black"
+        android:src="@raw/working"
+        android:visibility="gone"
+        app:shapeAppearanceOverlay="@style/HomePrevVisitedSystemStyle" />
+
+    <ProgressBar
+        android:id="@+id/loadingIndicator"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/black"
+        android:visibility="visible"
+        app:indicatorSize="@dimen/_92sdp" />
+
+    <LinearLayout
+        android:id="@+id/systemDetailsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_70sdp">
+
+        <TextView
+            android:id="@+id/block_id_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="1-" />
+
+        <TextView
+            android:id="@+id/floor_name_tv"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="-F1-" />
+
+        <TextView
+            android:id="@+id/room_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="-20" />
+    </LinearLayout>
+</RelativeLayout>

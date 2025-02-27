@@ -60,4 +60,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
 
+    // https://mvnrepository.com/artifact/com.squareup.picasso3/picasso
+    implementation("com.squareup.picasso3:picasso:3.0.0-alpha06")
+
+
 }
