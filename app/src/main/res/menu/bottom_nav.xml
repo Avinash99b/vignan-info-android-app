@@ -5,17 +5,17 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/home_icon"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/blocks"
-        android:icon="@drawable/home_icon"
-        app:showAsAction="always"/>
+        android:id="@+id/add"
+        android:icon="@drawable/add_lab_icon"
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/favourites"
-        android:icon="@drawable/favourite_icon"
-        app:showAsAction="always"/>
+        android:id="@+id/reports"
+        android:icon="@drawable/reports_icon"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/home_icon"
-        app:showAsAction="always"/>
+        android:icon="@drawable/profile_icon"
+        app:showAsAction="ifRoom" />
 </menu>

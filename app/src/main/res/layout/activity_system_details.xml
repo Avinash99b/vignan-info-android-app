@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".SystemDetailsActivity">
 
     <!-- Top Layout with Toolbar -->
@@ -24,6 +24,10 @@
             app:title="System"
             app:titleTextColor="@color/black" />
 
+        <View
+            android:background="@drawable/shadow_reverse"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"/>
         <!-- Id Component -->
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,7 +36,7 @@
             android:padding="16dp">
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -48,14 +52,14 @@
                 android:layout_toStartOf="@id/system_id_tv"
                 android:padding="@dimen/_10sdp"
                 android:src="@drawable/back_icon"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:id="@+id/system_id_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_toStartOf="@id/next_system_tv"
                 android:text="1"
@@ -70,7 +74,7 @@
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:padding="@dimen/_10sdp"
                 android:src="@drawable/next_icon"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
         </RelativeLayout>
 
         <!-- Lab Id Component -->
@@ -83,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Lab Id:"
                 android:textSize="16sp" />
 
@@ -94,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="1"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </RelativeLayout>
 
@@ -111,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Working"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
@@ -130,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Download Speed: "
                 android:textSize="16sp" />
 
@@ -140,7 +144,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@drawable/empty_edt_bg"
                 android:hint="Speed(Mbps)"
@@ -157,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:text="Upload Speed: "
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
@@ -167,7 +171,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:background="@drawable/empty_edt_bg"
                 android:hint="Speed(Mbps)"
                 android:inputType="number" />
@@ -181,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Ping: "
                 android:textSize="16sp" />
 
@@ -192,7 +196,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:background="@drawable/empty_edt_bg"
                 android:hint="Speed(Mbps)"
                 android:inputType="number" />
@@ -200,13 +204,18 @@
 
     </LinearLayout>
 
+    <View
+        android:background="@drawable/shadow"
+        android:layout_above="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
     <!-- Watch Ad and Update Button -->
     <com.avinash.viginfomanager.CustomViews.Button
         android:id="@+id/submit_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:background="@color/white"
         app:text="Watch Ad And Update" />
 

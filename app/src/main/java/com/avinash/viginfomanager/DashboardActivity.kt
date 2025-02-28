@@ -24,15 +24,18 @@ class DashboardActivity : AppCompatActivity() {
         binding.viewPager.adapter = DashboardVPAdapter(this)
         binding.viewPager.isUserInputEnabled = false
         binding.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.home -> binding.viewPager.currentItem = 0
-                R.id.blocks -> {
-//                    binding.viewPager.currentItem = 1
-                    startActivity(Intent(this, SystemDetailsActivity::class.java))
-                }
-                R.id.profile -> binding.viewPager.currentItem = 2
+                R.id.add -> binding.viewPager.currentItem = 1
+                R.id.reports -> binding.viewPager.currentItem = 2
+                R.id.profile -> binding.viewPager.currentItem = 3
             }
             true
         }
+    }
+
+    fun switchToHome(){
+        binding.viewPager.currentItem = 0
+        binding.bottomNavigationView.selectedItemId = R.id.home
     }
 }

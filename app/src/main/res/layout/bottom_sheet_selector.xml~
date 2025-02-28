@@ -22,17 +22,11 @@
             android:elevation="@dimen/_10sdp"
             android:textStyle="bold" />
 
-        <View
-            android:layout_below="@id/bottom_sheet_title"
-            android:layout_width="match_parent"
-            android:background="@drawable/shadow_reverse"
-            android:layout_height="3dp" />
         <androidx.recyclerview.widget.RecyclerView
             android:layout_above="@id/tmp_layout"
             android:id="@+id/bottom_sheet_recycler_view"
             android:layout_below="@id/bottom_sheet_title"
             android:layout_width="match_parent"
-            android:layout_marginTop="4dp"
             android:layout_height="match_parent" />
         <View
             android:id="@+id/tmp_layout"

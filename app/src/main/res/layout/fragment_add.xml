@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragments.AddFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="@dimen/_10sdp"
+        android:text="Select Add Type"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/shadow_reverse" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/add_mode_selector"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        app:checkedChip="@id/system_chip"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/system_chip"
+            style="@style/AddChipCustomStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="System"
+            app:checkedIcon="@drawable/system_icon"
+            app:chipStrokeColor="@color/black"
+            app:chipStrokeWidth="1dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/lab_chip"
+            style="@style/AddChipCustomStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="Lab"
+            android:textColor="@color/white"
+            app:checkedIcon="@drawable/add_lab_icon"
+            app:chipStrokeColor="@color/black"
+            app:chipStrokeWidth="1dp" />
+    </com.google.android.material.chip.ChipGroup>
+
+
+    <LinearLayout
+        android:id="@+id/add_system_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <EditText
+            android:id="@+id/lab_id_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="Lab Id"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/find_lab_id_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:text="Find Lab Id"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/working_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:text="Working"
+            android:textColor="@color/black"
+            app:thumbTint="@color/white"
+            app:trackTint="#5434C7" />
+
+        <com.avinash.viginfomanager.CustomViews.Button
+            android:id="@+id/add_system_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="Add System" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_lab_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/lab_name_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="Lab Name(Room No)"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/lab_des_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="Lab Description"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/block_id_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="Block Id"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/find_block_id_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:text="Find Block Id"
+            android:textColor="@color/white" />
+
+
+        <EditText
+            android:id="@+id/incharge_id_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="Incharge Id"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/floor_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="Floor"
+            android:inputType="number"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <com.avinash.viginfomanager.CustomViews.Button
+            android:id="@+id/add_lab_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="Add Lab" />
+    </LinearLayout>
+</LinearLayout>

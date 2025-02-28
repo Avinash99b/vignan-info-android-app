@@ -14,7 +14,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_blocks, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_profile, container, false)
         return rootView;
     }
 }

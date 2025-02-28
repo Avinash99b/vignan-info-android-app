@@ -13,6 +13,8 @@ import com.avinash.viginfomanager.Apis.RequestUtils
 import com.avinash.viginfomanager.Apis.Responses.Lab
 import com.avinash.viginfomanager.databinding.BottomSheetSelectorBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,7 +71,9 @@ class LabSelectorDialog(val activity: Activity): BottomSheetDialog(activity) {
     private fun loadLabs(blockId:Int, floorNo:Int=0){
         progressDialog.show()
 
-        Apis.LabsApi.getLabs(blockId,floorNo).enqueue(object :Callback<ArrayList<Lab>>{
+        Apis.LabsApi.getLabs(blockId, JsonObject().apply {
+            add("floors",)
+        }).enqueue(object :Callback<ArrayList<Lab>>{
             override fun onResponse(p0: Call<ArrayList<Lab>>, p1: Response<ArrayList<Lab>>) {
                 progressDialog.dismiss()
                 if(p1.isSuccessful){
