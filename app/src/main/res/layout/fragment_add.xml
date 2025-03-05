@@ -88,8 +88,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
+            android:checked="true"
             android:padding="@dimen/_10sdp"
             android:text="Working"
+            android:textColor="@color/black"
+            app:thumbTint="@color/white"
+            app:trackTint="#5434C7" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/keyboard_working_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:checked="true"
+            android:padding="@dimen/_10sdp"
+            android:text="Keyboard Working"
+            android:textColor="@color/black"
+            app:thumbTint="@color/white"
+            app:trackTint="#5434C7" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/mouse_working_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:checked="true"
+            android:padding="@dimen/_10sdp"
+            android:text="Mouse Working"
             android:textColor="@color/black"
             app:thumbTint="@color/white"
             app:trackTint="#5434C7" />
@@ -131,6 +156,17 @@
             android:textColor="@color/black" />
 
         <EditText
+            android:id="@+id/floor_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="Floor"
+            android:inputType="number"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <EditText
             android:id="@+id/block_id_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -153,24 +189,13 @@
 
 
         <EditText
-            android:id="@+id/incharge_id_edt"
+            android:id="@+id/incharge_mob_no_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:background="@drawable/edit_text_bg"
-            android:hint="Incharge Id"
+            android:hint="Incharge Mobile No"
             android:inputType="text"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/floor_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Floor"
-            android:inputType="number"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black" />
 

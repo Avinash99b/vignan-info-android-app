@@ -31,7 +31,7 @@ class LabsAdapter(val activity:Activity): RecyclerView.Adapter<LabsAdapter.ViewH
         holder.binding.labIdTv.text = "ID:- ${lab.id}"
         holder.binding.labNameTv.text = "Name:- ${lab.name}"
         holder.binding.labFloorTv.text = "Floor:- ${lab.floor}"
-        holder.binding.labInchargeTv.text = "Incharge:- ${lab.incharge_id}"
+        holder.binding.labInchargeTv.text = "Incharge:- ${lab.incharge_no}"
         holder.binding.labDesTv.text = lab.description
 
         holder.binding.root.setOnClickListener {

@@ -222,6 +222,7 @@
     </HorizontalScrollView>
 
     <LinearLayout
+        android:id="@+id/labs_holder_layout"
         android:background="@drawable/card_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

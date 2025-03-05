@@ -101,6 +101,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<AuthToken>, t: Throwable) {
+                t.printStackTrace()
                 progressDialog.dismiss()
                 Toast.makeText(this@LoginActivity, "Something went wrong", Toast.LENGTH_SHORT)
                     .show()

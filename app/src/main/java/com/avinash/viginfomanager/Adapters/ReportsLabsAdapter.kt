@@ -24,15 +24,14 @@ class ReportsLabsAdapter(val activity:Activity): RecyclerView.Adapter<ReportsLab
     }
 
     override fun getItemCount(): Int {
-        return 30
+        return labs.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-    }
-
-    fun loadLabs(blockId:Int,floors:Int){
-        systemSelectorDialog.show()
+        val lab = labs[position]
+        holder.binding.root.setOnClickListener {
+            systemSelectorDialog.show(lab.id)
+        }
     }
     class ViewHolder(val binding:RecyclerLayoutReportLabBinding): RecyclerView.ViewHolder(binding.root)
 }

@@ -46,9 +46,10 @@ class ReportsFragment : Fragment() {
         }
     }
 
-    val reportsLabsAdapter by lazy {
+    private val reportsLabsAdapter by lazy {
         ReportsLabsAdapter(activity as DashboardActivity)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -71,7 +72,7 @@ class ReportsFragment : Fragment() {
                 }
 
                 val blocks = ArrayList<Block>(blocksCopy)
-                blocks.add(Block("All Blocks", 0, null, "All Blocks", 0))
+                blocks.add(Block("All Blocks", 0, null, "All", 0))
                 blocks.sortBy { it1 ->
                     it1.id
                 }
@@ -149,6 +150,36 @@ class ReportsFragment : Fragment() {
 
 
         progressDialog.show()
+
+        if(selectedBlock.id == 0){
+            binding.labsHolderLayout.visibility = View.GONE
+        }else{
+            binding.labsHolderLayout.visibility = View.VISIBLE
+        }
+        Apis.LabsApi.getLabs(selectedBlock.id, selectedFloors).enqueue(object :
+            retrofit2.Callback<ArrayList<com.avinash.viginfomanager.Apis.Responses.Lab>> {
+            override fun onResponse(
+                call: Call<ArrayList<com.avinash.viginfomanager.Apis.Responses.Lab>>,
+                response: retrofit2.Response<ArrayList<com.avinash.viginfomanager.Apis.Responses.Lab>>
+            ) {
+                progressDialog.dismiss()
+                if (response.isSuccessful) {
+                    reportsLabsAdapter.labs = response.body() ?: ArrayList()
+                } else {
+                    Toast.makeText(context, RequestUtils.parseError(response), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+
+            override fun onFailure(
+                call: Call<ArrayList<com.avinash.viginfomanager.Apis.Responses.Lab>>, t: Throwable
+            ) {
+                t.printStackTrace()
+                progressDialog.dismiss()
+                Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+
         Apis.ReportsApi.getDefaultReports(selectedBlock.id, JsonObject().apply {
             add("floors", JsonArray(selectedFloors.size).apply {
                 selectedFloors.forEach {
@@ -185,6 +216,7 @@ class ReportsFragment : Fragment() {
             }
 
             override fun onFailure(p0: Call<Report>, p1: Throwable) {
+                p1.printStackTrace()
                 progressDialog.dismiss()
                 Toast.makeText(context, p1.message, Toast.LENGTH_SHORT).show()
             }

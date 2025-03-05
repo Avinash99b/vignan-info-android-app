@@ -71,9 +71,8 @@ class LabSelectorDialog(val activity: Activity): BottomSheetDialog(activity) {
     private fun loadLabs(blockId:Int, floorNo:Int=0){
         progressDialog.show()
 
-        Apis.LabsApi.getLabs(blockId, JsonObject().apply {
-            add("floors",)
-        }).enqueue(object :Callback<ArrayList<Lab>>{
+        Apis.LabsApi.getLabs(blockId, ArrayList<Int>().apply { add(floorNo)
+            add(floorNo) }).enqueue(object :Callback<ArrayList<Lab>>{
             override fun onResponse(p0: Call<ArrayList<Lab>>, p1: Response<ArrayList<Lab>>) {
                 progressDialog.dismiss()
                 if(p1.isSuccessful){

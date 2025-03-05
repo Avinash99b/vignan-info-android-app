@@ -50,7 +50,7 @@ class SystemDetailsActivity : AppCompatActivity() {
             loadSystemDetails()
         }
 
-        binding.submitBtn.setOnClickListener{
+        binding.submitBtn.setOnClickListener {
             val jsonObject = JsonObject()
             jsonObject.addProperty("working", binding.switchWorking.isChecked)
             jsonObject.addProperty("download_speed", binding.edtDownloadSpeed.text.toString())
@@ -59,13 +59,28 @@ class SystemDetailsActivity : AppCompatActivity() {
 
             updateSystemDetails(systemId, jsonObject)
         }
+
+
     }
 
     private fun loadSystemDetails() {
+
+        var bookMarkedSystems = dataManager.getBookmarkedSystems()
+        val bookMarkedSystem = bookMarkedSystems.find { it.id == systemId }
+        var isBookmarked = bookMarkedSystem != null
+        if (isBookmarked) {
+            binding.bookmarkBtn.setImageResource(R.drawable.bookmark_icon_filled)
+        } else {
+            binding.bookmarkBtn.setImageResource(R.drawable.bookmark_icon)
+        }
+
         progressDialog.show()
         binding.systemIdTv.text = systemId.toString()
         Apis.SystemsApi.getSystem(systemId).enqueue(object : Callback<SystemInfo> {
-            override fun onResponse(call: Call<SystemInfo>, response: retrofit2.Response<SystemInfo>) {
+            override fun onResponse(
+                call: Call<SystemInfo>,
+                response: retrofit2.Response<SystemInfo>
+            ) {
                 progressDialog.dismiss()
                 if (response.isSuccessful) {
                     val systemDetails = response.body()
@@ -76,21 +91,38 @@ class SystemDetailsActivity : AppCompatActivity() {
                         binding.edtUploadSpeed.setText(if (systemDetails.upload_speed == null) "0" else systemDetails.upload_speed.toString())
                         binding.edtPingSpeed.setText(if (systemDetails.ping == null) "0" else systemDetails.ping.toString())
 
-                        binding.toolbar.setNavigationOnClickListener {
+                        binding.bookmarkBtn.setOnClickListener {
+                            if (isBookmarked) {
+                                dataManager.removeBookmarkSystem(bookMarkedSystem!!)
+                                binding.bookmarkBtn.setImageResource(R.drawable.bookmark_icon)
+                            } else {
+                                dataManager.addBookmarkSystem(systemDetails)
+                                binding.bookmarkBtn.setImageResource(R.drawable.bookmark_icon_filled)
+                            }
+                            bookMarkedSystems = dataManager.getBookmarkedSystems()
+                            isBookmarked = bookMarkedSystems.find { it.id == systemId } != null
+                        }
+                        binding.backBtn.setOnClickListener {
                             finish()
                         }
 
                         dataManager.addPrevVisitedSystem(systemDetails)
                     }
                 } else {
-                    Toast.makeText(this@SystemDetailsActivity, RequestUtils.parseError(response),
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SystemDetailsActivity, RequestUtils.parseError(response),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             override fun onFailure(call: Call<SystemInfo>, t: Throwable) {
-                Toast.makeText(this@SystemDetailsActivity, "Something went wrong",
-                    Toast.LENGTH_SHORT).show()
+                t.printStackTrace()
+
+                Toast.makeText(
+                    this@SystemDetailsActivity, "Something went wrong",
+                    Toast.LENGTH_SHORT
+                ).show()
                 progressDialog.dismiss()
             }
         })
@@ -107,22 +139,31 @@ class SystemDetailsActivity : AppCompatActivity() {
                 if (p1.isSuccessful) {
                     val response = p1.body()
                     if (response != null) {
-                        Toast.makeText(this@SystemDetailsActivity, response.message,
-                            Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(this@SystemDetailsActivity, "Something went wrong",
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@SystemDetailsActivity, response.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this@SystemDetailsActivity, "Something went wrong",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } else {
-                    Toast.makeText(this@SystemDetailsActivity, RequestUtils.parseError(p1),
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SystemDetailsActivity, RequestUtils.parseError(p1),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             override fun onFailure(p0: Call<NormResponse>, p1: Throwable) {
+                p1.printStackTrace()
                 progressDialog.dismiss()
-                Toast.makeText(this@SystemDetailsActivity, "Something went wrong",
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@SystemDetailsActivity, "Something went wrong",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         })

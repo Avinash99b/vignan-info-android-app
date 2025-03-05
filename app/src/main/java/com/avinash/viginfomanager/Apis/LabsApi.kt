@@ -14,9 +14,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface LabsApi {
-    @POST("labs?")
+    @GET("labs?")
     fun getLabs(@Query("blockId") blockId: Int,
-                @Body jsonObject: JsonObject): Call<ArrayList<Lab>>
+                @Query("floors") floors:ArrayList<Int>): Call<ArrayList<Lab>>
 
     @GET("labs/{id}/systems")
     fun getSystems(@Path("id") id: Int): Call<ArrayList<System>>

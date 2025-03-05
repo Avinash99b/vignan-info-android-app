@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.avinash.viginfomanager.Apis.DataManager
+import com.avinash.viginfomanager.Apis.Responses.Block
 import com.avinash.viginfomanager.LabSelectorDialog
 import com.avinash.viginfomanager.databinding.RecyclerLayoutHomeBlockBinding
 
@@ -17,8 +18,15 @@ class DashboardBlocksAdapter(activity: Activity) :
         LabSelectorDialog(activity)
     }
 
+    private var blocks = dataManager.blocks.value?:ArrayList()
     init {
-        dataManager.blocks.observeForever {
+        dataManager.blocks.observeForever { it ->
+            if(it == null) return@observeForever
+            val clone = it.clone() as ArrayList<Block>
+            clone.sortBy {it1->
+                it1.id
+            }
+            blocks = clone
             notifyDataSetChanged()
         }
     }
@@ -31,11 +39,11 @@ class DashboardBlocksAdapter(activity: Activity) :
     }
 
     override fun getItemCount(): Int {
-        return dataManager.blocks.value?.size ?: 0
+        return blocks.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val block = dataManager.blocks.value?.get(position) ?: return
+        val block = blocks[position]
         holder.binding.blockNameTv.text = "${block.id}. ${block.name}"
         holder.binding.blockDesTv.text = block.description
 

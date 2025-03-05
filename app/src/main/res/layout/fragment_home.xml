@@ -44,41 +44,36 @@
         app:layout_constraintTop_toBottomOf="@id/search_view">
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/button_section"
+            android:id="@+id/systems_mode_selector"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            app:selectionRequired="true"
             android:orientation="horizontal"
+            app:selectionRequired="true"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/bookmarks_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:drawableTint="@color/black"
-                android:text="Favorites"
-                android:textColor="@color/black"
-                app:chipBackgroundColor="@color/white"
-                app:chipIcon="@drawable/favourite_icon" />
+                app:chipIconTint="@color/drawable_chip"
+                style="@style/DashboardSystemChipStyle"
+                android:text="Bookmarks"
+                android:textColor="@color/chip_text"
+                app:chipBackgroundColor="@color/chip_background"
+                app:chipIcon="@drawable/bookmark_icon" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/history_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="@color/black"
+                style="@style/DashboardSystemChipStyle"
+                app:chipIconTint="@color/drawable_chip"
                 android:text="History"
-                android:textColor="@color/black"
-                app:chipBackgroundColor="@color/white"
+                android:textColor="@color/chip_text"
+                app:chipBackgroundColor="@color/chip_background"
                 app:chipIcon="@drawable/history_icon" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTint="@color/black"
-                android:text="Maintainence"
-                android:textColor="@color/black"
-                app:chipBackgroundColor="@color/white"
-                app:chipIcon="@drawable/maintainence_icon" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>

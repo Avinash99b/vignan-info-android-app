@@ -14,15 +14,15 @@ import com.avinash.viginfomanager.Apis.Responses.SystemInfo
 import com.avinash.viginfomanager.R
 import com.avinash.viginfomanager.SystemDetailsActivity
 
-class DashboardPrevSystemsAdapter(val activity:Activity): RecyclerView.Adapter<DashboardPrevSystemsAdapter.ViewHolder>() {
+class DashboardSystemsAdapter(val activity:Activity): RecyclerView.Adapter<DashboardSystemsAdapter.ViewHolder>() {
 
     private val dataManager = DataManager.getInstance(activity)
 
-    private var prevVisitedSystems = dataManager.prevVisitedSystems.value
+    private var dashboardSystems = dataManager.dashboardShowSystems.value
 
     init {
-        dataManager.prevVisitedSystems.observeForever {
-            prevVisitedSystems = it
+        dataManager.dashboardShowSystems.observeForever {
+            dashboardSystems = it
             notifyDataSetChanged()
         }
     }
@@ -32,12 +32,12 @@ class DashboardPrevSystemsAdapter(val activity:Activity): RecyclerView.Adapter<D
     }
 
     override fun getItemCount(): Int {
-        return dataManager.prevVisitedSystems.value?.size ?: 0
+        return dataManager.dashboardShowSystems.value?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if(prevVisitedSystems == null) return
-        val system = prevVisitedSystems?.get(position) ?: return
+        if(dashboardSystems == null) return
+        val system = dashboardSystems?.get(position) ?: return
 
         holder.binding.loadingIndicator.visibility = android.view.View.VISIBLE
         holder.binding.root.setOnClickListener{
@@ -66,6 +66,7 @@ class DashboardPrevSystemsAdapter(val activity:Activity): RecyclerView.Adapter<D
             }
 
             override fun onFailure(call: retrofit2.Call<SystemInfo>, t: Throwable) {
+                t.printStackTrace()
                 Toast.makeText(holder.binding.root.context, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         })

@@ -105,7 +105,7 @@ class AddFragment : Fragment() {
     private fun addLab(){
         val name = binding.labNameEdt.text.toString()
         val floor = binding.floorEdt.text.toString()
-        val incharge = binding.inchargeIdEdt.text.toString()
+        val incharge = binding.inchargeMobNoEdt.text.toString()
         val description = binding.labDesEdt.text.toString()
         val blockId = binding.blockIdEdt.text.toString().toInt()
 
@@ -116,7 +116,7 @@ class AddFragment : Fragment() {
         val jsonObject = JsonObject().apply {
             addProperty("name", name)
             addProperty("floor", floor)
-            addProperty("incharge_id", incharge)
+            addProperty("incharge_mob_no", incharge)
             addProperty("des", description)
             addProperty("block_id", blockId)
         }
@@ -138,6 +138,7 @@ class AddFragment : Fragment() {
             }
 
             override fun onFailure(p0: Call<NormResponse>, p1: Throwable) {
+                p1.printStackTrace()
                 progressDialog.dismiss()
                 Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
@@ -147,6 +148,8 @@ class AddFragment : Fragment() {
     private fun addSystem(){
         val labId = binding.labIdEdt.text.toString().toInt()
         val working = binding.workingSwitch.isChecked
+        val keyboardWorking = binding.keyboardWorkingSwitch.isChecked
+        val mouseWorking = binding.mouseWorkingSwitch.isChecked
 
         if(labId == 0){
             return
@@ -154,6 +157,8 @@ class AddFragment : Fragment() {
         val jsonObject = JsonObject().apply {
             addProperty("lab_id", labId)
             addProperty("working", working)
+            addProperty("keyboard_working", keyboardWorking)
+            addProperty("mouse_working", mouseWorking)
         }
 
         progressDialog.show()
@@ -173,6 +178,7 @@ class AddFragment : Fragment() {
             }
 
             override fun onFailure(p0: Call<NormResponse>, p1: Throwable) {
+                p1.printStackTrace()
                 progressDialog.dismiss()
                 Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
