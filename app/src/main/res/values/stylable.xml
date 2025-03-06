@@ -6,5 +6,6 @@
         <attr name="color" format="color" />
         <attr name="image" format="reference" />
         <attr name="showImage" format="boolean" />
+        <attr name="imageTint" format="color" />
     </declare-styleable>
 </resources>

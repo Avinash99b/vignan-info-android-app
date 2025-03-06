@@ -32,6 +32,9 @@ class ReportsLabsAdapter(val activity:Activity): RecyclerView.Adapter<ReportsLab
         holder.binding.root.setOnClickListener {
             systemSelectorDialog.show(lab.id)
         }
+
+        holder.binding.labNameTv.text = lab.name
+        holder.binding.labDesTv.text = lab.description
     }
     class ViewHolder(val binding:RecyclerLayoutReportLabBinding): RecyclerView.ViewHolder(binding.root)
 }

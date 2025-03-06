@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:src="@raw/google_icon"
         android:layout_marginVertical="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_5sdp"/>
+        android:layout_marginEnd="@dimen/_2sdp"/>
 
     <TextView
         android:id="@+id/custom_btn_text"

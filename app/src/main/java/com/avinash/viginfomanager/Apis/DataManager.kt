@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
 import com.avinash.viginfomanager.Apis.Responses.Block
+import com.avinash.viginfomanager.Apis.Responses.Problem
 import com.avinash.viginfomanager.Apis.Responses.SystemInfo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -19,9 +20,14 @@ class DataManager(private val sharedPreferences: SharedPreferences) {
 
     val dashboardShowSystems = MutableLiveData<ArrayList<SystemInfo>>(ArrayList())
 
+    val problems = MutableLiveData<ArrayList<Problem>?>(ArrayList())
+
     private val gson = Gson()
 
     var dashboardSystemsMode = MutableLiveData(DashboardSystemShowMode.PREV_VISITED)
+
+    val authToken: String
+        get() = sharedPreferences.getString("token", "").toString()
 
     init {
         Apis.BlocksApi.getBlocks().enqueue(object : retrofit2.Callback<ArrayList<Block>> {
@@ -35,6 +41,20 @@ class DataManager(private val sharedPreferences: SharedPreferences) {
             override fun onFailure(call: retrofit2.Call<ArrayList<Block>>, t: Throwable) {
                 t.printStackTrace()
                 blocks.value = null
+            }
+        })
+
+        Apis.ProblemsApi.getProblems().enqueue(object : retrofit2.Callback<ArrayList<Problem>> {
+            override fun onResponse(
+                call: retrofit2.Call<ArrayList<Problem>>,
+                response: retrofit2.Response<ArrayList<Problem>>
+            ) {
+                problems.value = response.body()
+            }
+
+            override fun onFailure(call: retrofit2.Call<ArrayList<Problem>>, t: Throwable) {
+                t.printStackTrace()
+                problems.value = null
             }
         })
         refreshSystems()
@@ -115,6 +135,19 @@ class DataManager(private val sharedPreferences: SharedPreferences) {
         }
     }
 
+    fun removePrevVisitedSystem(systemId:Int) {
+        val prevVisitedSystemsString = sharedPreferences.getString("prevVisitedSystems", "")
+        var prevSys: ArrayList<SystemInfo> = gson.fromJson(
+            prevVisitedSystemsString, object : TypeToken<ArrayList<SystemInfo>>() {}.type
+        ) ?: ArrayList();
+        prevSys = prevSys.filter {
+            it.id != systemId
+        } as ArrayList<SystemInfo>
+        sharedPreferences.edit().putString("prevVisitedSystems", gson.toJson(prevSys)).apply()
+        if (dashboardSystemsMode.value == DashboardSystemShowMode.PREV_VISITED) {
+            dashboardShowSystems.postValue(prevSys)
+        }
+    }
     companion object {
         @JvmStatic
         lateinit var instance: DataManager

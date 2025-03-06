@@ -35,6 +35,7 @@ class AddFragment : Fragment() {
             setMessage("Please Wait...")
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,42 +58,43 @@ class AddFragment : Fragment() {
             }
         }
 
-        binding.findLabIdBtn.setOnClickListener{
+        binding.findLabIdBtn.setOnClickListener {
             (activity as DashboardActivity).switchToHome()
         }
-        binding.findBlockIdBtn.setOnClickListener{
+        binding.findBlockIdBtn.setOnClickListener {
             (activity as DashboardActivity).switchToHome()
         }
 
-        binding.addLabBtn.setOnClickListener{
+        binding.addLabBtn.setOnClickListener {
             addLab()
         }
 
-        binding.addSystemBtn.setOnClickListener{
+        binding.addSystemBtn.setOnClickListener {
             addSystem()
         }
 
         binding.floorEdt.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                if(binding.blockIdEdt.text.toString().isEmpty()){
+                if (binding.blockIdEdt.text.toString().isEmpty()) {
                     binding.blockIdEdt.requestFocus()
                     Toast.makeText(activity, "Please select block first", Toast.LENGTH_SHORT).show()
                     return@OnFocusChangeListener
-                }else{
+                } else {
                     val blockId = binding.blockIdEdt.text.toString().toInt()
-                    val block = dataManager.blocks.value?.find { it.id == blockId } ?: return@OnFocusChangeListener
+                    val block = dataManager.blocks.value?.find { it.id == blockId }
+                        ?: return@OnFocusChangeListener
 
                     val noOfFloors = block.floors
                     val items = ArrayList<String>()
-                    for(i in 0 until noOfFloors){
-                        items.add("Floor ${i+1}")
+                    for (i in 0 until noOfFloors) {
+                        items.add("Floor ${i + 1}")
                     }
 
                     val builder = AlertDialog.Builder(activity)
                         .setTitle("Select Floor")
-                        .setSingleChoiceItems(items.toTypedArray(), -1){ dialog, which ->
+                        .setSingleChoiceItems(items.toTypedArray(), -1) { dialog, which ->
                             dialog.dismiss()
-                            binding.floorEdt.setText("${which+1}")
+                            binding.floorEdt.setText("${which + 1}")
                         }
 
                     builder.show()
@@ -102,37 +104,45 @@ class AddFragment : Fragment() {
         return binding.root
     }
 
-    private fun addLab(){
-        val name = binding.labNameEdt.text.toString()
-        val floor = binding.floorEdt.text.toString()
-        val incharge = binding.inchargeMobNoEdt.text.toString()
-        val description = binding.labDesEdt.text.toString()
-        val blockId = binding.blockIdEdt.text.toString().toInt()
+    private fun addLab() {
+        val jsonObject: JsonObject
+        try {
+            val name = binding.labNameEdt.text.toString()
+            val floor = binding.floorEdt.text.toString()
+            val incharge = binding.inchargeMobNoEdt.text.toString()
+            val description = binding.labDesEdt.text.toString()
+            val blockId = binding.blockIdEdt.text.toString().toInt()
 
-        if(name.isEmpty() || floor.isEmpty() || incharge.isEmpty() || description.isEmpty()|| blockId == 0){
+            if (name.isEmpty() || floor.isEmpty() || incharge.isEmpty() || description.isEmpty() || blockId == 0) {
+                return
+            }
+
+            jsonObject = JsonObject().apply {
+                addProperty("name", name)
+                addProperty("floor", floor)
+                addProperty("incharge_mob_no", incharge)
+                addProperty("des", description)
+                addProperty("block_id", blockId)
+            }
+
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(activity, "Please enter valid data", Toast.LENGTH_SHORT).show()
             return
         }
-
-        val jsonObject = JsonObject().apply {
-            addProperty("name", name)
-            addProperty("floor", floor)
-            addProperty("incharge_mob_no", incharge)
-            addProperty("des", description)
-            addProperty("block_id", blockId)
-        }
-
         progressDialog.show()
         Apis.LabsApi.addLab(jsonObject).enqueue(object : retrofit2.Callback<NormResponse> {
             override fun onResponse(p0: Call<NormResponse>, p1: retrofit2.Response<NormResponse>) {
                 progressDialog.dismiss()
-                if(p1.isSuccessful){
+                if (p1.isSuccessful) {
                     val response = p1.body()
-                    if(response!=null){
+                    if (response != null) {
                         Toast.makeText(activity, response.message, Toast.LENGTH_SHORT).show()
-                    }else{
+                    } else {
                         Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
                     }
-                }else{
+                } else {
                     Toast.makeText(activity, RequestUtils.parseError(p1), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -145,34 +155,44 @@ class AddFragment : Fragment() {
         })
 
     }
-    private fun addSystem(){
-        val labId = binding.labIdEdt.text.toString().toInt()
-        val working = binding.workingSwitch.isChecked
-        val keyboardWorking = binding.keyboardWorkingSwitch.isChecked
-        val mouseWorking = binding.mouseWorkingSwitch.isChecked
 
-        if(labId == 0){
+    private fun addSystem() {
+        val jsonObject: JsonObject
+        try {
+            val labId = binding.labIdEdt.text.toString().toInt()
+            val working = binding.workingSwitch.isChecked
+            val keyboardWorking = binding.keyboardWorkingSwitch.isChecked
+            val mouseWorking = binding.mouseWorkingSwitch.isChecked
+            val multiplier = binding.pcCountMultiplierEdt.text.toString().toInt()
+            if (labId == 0) {
+                return
+            }
+            jsonObject = JsonObject().apply {
+                addProperty("lab_id", labId)
+                addProperty("working", working)
+                addProperty("keyboard_working", keyboardWorking)
+                addProperty("mouse_working", mouseWorking)
+                addProperty("multiplier", multiplier)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(activity, "Please enter valid data", Toast.LENGTH_SHORT).show()
             return
         }
-        val jsonObject = JsonObject().apply {
-            addProperty("lab_id", labId)
-            addProperty("working", working)
-            addProperty("keyboard_working", keyboardWorking)
-            addProperty("mouse_working", mouseWorking)
-        }
+
 
         progressDialog.show()
-        Apis.SystemsApi.addSystem(jsonObject).enqueue(object : retrofit2.Callback<NormResponse> {
+        Apis.SystemsApi.addSystem(jsonObject,dataManager.authToken).enqueue(object : retrofit2.Callback<NormResponse> {
             override fun onResponse(p0: Call<NormResponse>, p1: retrofit2.Response<NormResponse>) {
                 progressDialog.dismiss()
-                if(p1.isSuccessful){
+                if (p1.isSuccessful) {
                     val response = p1.body()
-                    if(response!=null){
+                    if (response != null) {
                         Toast.makeText(activity, response.message, Toast.LENGTH_SHORT).show()
-                    }else{
+                    } else {
                         Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
                     }
-                }else{
+                } else {
                     Toast.makeText(activity, RequestUtils.parseError(p1), Toast.LENGTH_SHORT).show()
                 }
             }

@@ -1,11 +1,12 @@
 package com.avinash.viginfomanager.Apis
 
+import com.avinash.viginfomanager.Apis.Responses.Problem
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Apis {
     companion object{
-        private const val BASE_URL = "http://10.10.7.115:3000/"
+        private const val BASE_URL = "http://43.204.192.89/"
 
         private val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -21,5 +22,7 @@ class Apis {
         val LabsApi = retrofit.create(LabsApi::class.java)
 
         val ReportsApi = retrofit.create(ReportsApi::class.java)
+
+        val ProblemsApi = retrofit.create(ProblemsApi::class.java)
     }
 }

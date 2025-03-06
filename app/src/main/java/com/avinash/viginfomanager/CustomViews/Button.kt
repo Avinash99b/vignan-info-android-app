@@ -6,6 +6,7 @@ import android.animation.LayoutTransition
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -87,6 +88,14 @@ class Button(context: Context?, attrs: AttributeSet, defStyleAttr: Int = 0) :
         val showImage = typedArray?.getBoolean(R.styleable.Button_showImage, false)
         if (showImage == false)
             showImage(false)
+
+        val imageTint = typedArray?.getColor(
+            R.styleable.Button_imageTint,
+            ContextCompat.getColor(context, R.color.tpt)
+        )
+
+        if (imageTint != null && imageTint!= ContextCompat.getColor(context,R.color.tpt))
+            rootView.customBtnIcon.imageTintList = ColorStateList.valueOf(imageTint)
 
         typedArray?.recycle()
     }

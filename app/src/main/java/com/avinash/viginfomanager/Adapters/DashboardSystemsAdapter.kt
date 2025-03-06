@@ -61,6 +61,10 @@ class DashboardSystemsAdapter(val activity:Activity): RecyclerView.Adapter<Dashb
                     holder.binding.roomNameTv.text = system.name
 
                 }else{
+                    if(response.code() == 404){
+                        dataManager.removePrevVisitedSystem(system.id)
+                        return
+                    }
                     Toast.makeText(holder.binding.root.context, RequestUtils.parseError(response), Toast.LENGTH_SHORT).show()
                 }
             }

@@ -9,6 +9,7 @@ import com.avinash.viginfomanager.Apis.DataManager
 import com.avinash.viginfomanager.Apis.RequestUtils
 import com.avinash.viginfomanager.Apis.Responses.NormResponse
 import com.avinash.viginfomanager.Apis.Responses.SystemInfo
+import com.avinash.viginfomanager.CustomViews.ReportDialog
 import com.avinash.viginfomanager.databinding.ActivitySystemDetailsBinding
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -31,6 +32,9 @@ class SystemDetailsActivity : AppCompatActivity() {
         DataManager.getInstance(this)
     }
 
+    val reportDialog by lazy {
+        ReportDialog(this)
+    }
     private var systemId by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,14 +54,33 @@ class SystemDetailsActivity : AppCompatActivity() {
             loadSystemDetails()
         }
 
+        binding.reportSystemBtn.setOnClickListener{
+            reportDialog.show(systemId)
+        }
         binding.submitBtn.setOnClickListener {
-            val jsonObject = JsonObject()
-            jsonObject.addProperty("working", binding.switchWorking.isChecked)
-            jsonObject.addProperty("download_speed", binding.edtDownloadSpeed.text.toString())
-            jsonObject.addProperty("upload_speed", binding.edtUploadSpeed.text.toString())
-            jsonObject.addProperty("ping", binding.edtPingSpeed.text.toString())
 
-            updateSystemDetails(systemId, jsonObject)
+            try {
+                val jsonObject = JsonObject().apply {
+                    addProperty("working", binding.switchWorking.isChecked)
+                    addProperty("download_speed", binding.edtDownloadSpeed.text.toString())
+                    addProperty("upload_speed", binding.edtUploadSpeed.text.toString())
+                    addProperty("ping", binding.edtPingSpeed.text.toString())
+                    addProperty("lab_id", binding.labIdTv.text.toString().toInt())
+                    addProperty("keyboard_working", binding.keyboardWorkingSwitch.isChecked)
+                    addProperty("mouse_working", binding.mouseWorkingSwitch.isChecked)
+                    addProperty("serial_no", binding.edtSerialNo.text.toString())
+                    addProperty("processor", binding.edtProcessor.text.toString())
+                    addProperty("ram", binding.edtRamSize.text.toString())
+                    addProperty("storage", binding.edtStorageSpace.text.toString())
+                }
+                updateSystemDetails(systemId, jsonObject)
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(this@SystemDetailsActivity, "Please enter valid values", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
         }
 
 
@@ -78,8 +101,7 @@ class SystemDetailsActivity : AppCompatActivity() {
         binding.systemIdTv.text = systemId.toString()
         Apis.SystemsApi.getSystem(systemId).enqueue(object : Callback<SystemInfo> {
             override fun onResponse(
-                call: Call<SystemInfo>,
-                response: retrofit2.Response<SystemInfo>
+                call: Call<SystemInfo>, response: retrofit2.Response<SystemInfo>
             ) {
                 progressDialog.dismiss()
                 if (response.isSuccessful) {
@@ -110,7 +132,8 @@ class SystemDetailsActivity : AppCompatActivity() {
                     }
                 } else {
                     Toast.makeText(
-                        this@SystemDetailsActivity, RequestUtils.parseError(response),
+                        this@SystemDetailsActivity,
+                        RequestUtils.parseError(response),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -120,8 +143,7 @@ class SystemDetailsActivity : AppCompatActivity() {
                 t.printStackTrace()
 
                 Toast.makeText(
-                    this@SystemDetailsActivity, "Something went wrong",
-                    Toast.LENGTH_SHORT
+                    this@SystemDetailsActivity, "Something went wrong", Toast.LENGTH_SHORT
                 ).show()
                 progressDialog.dismiss()
             }
@@ -133,26 +155,23 @@ class SystemDetailsActivity : AppCompatActivity() {
         progressDialog.setMessage("Updating system details")
         progressDialog.show()
 
-        Apis.SystemsApi.updateSystem(systemId, jsonObject).enqueue(object : Callback<NormResponse> {
+        Apis.SystemsApi.updateSystem(systemId, jsonObject,dataManager.authToken).enqueue(object : Callback<NormResponse> {
             override fun onResponse(p0: Call<NormResponse>, p1: retrofit2.Response<NormResponse>) {
                 progressDialog.dismiss()
                 if (p1.isSuccessful) {
                     val response = p1.body()
                     if (response != null) {
                         Toast.makeText(
-                            this@SystemDetailsActivity, response.message,
-                            Toast.LENGTH_SHORT
+                            this@SystemDetailsActivity, response.message, Toast.LENGTH_SHORT
                         ).show()
                     } else {
                         Toast.makeText(
-                            this@SystemDetailsActivity, "Something went wrong",
-                            Toast.LENGTH_SHORT
+                            this@SystemDetailsActivity, "Something went wrong", Toast.LENGTH_SHORT
                         ).show()
                     }
                 } else {
                     Toast.makeText(
-                        this@SystemDetailsActivity, RequestUtils.parseError(p1),
-                        Toast.LENGTH_SHORT
+                        this@SystemDetailsActivity, RequestUtils.parseError(p1), Toast.LENGTH_SHORT
                     ).show()
                 }
             }
@@ -161,8 +180,7 @@ class SystemDetailsActivity : AppCompatActivity() {
                 p1.printStackTrace()
                 progressDialog.dismiss()
                 Toast.makeText(
-                    this@SystemDetailsActivity, "Something went wrong",
-                    Toast.LENGTH_SHORT
+                    this@SystemDetailsActivity, "Something went wrong", Toast.LENGTH_SHORT
                 ).show()
             }
 

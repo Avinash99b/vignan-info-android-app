@@ -55,154 +55,178 @@
     </com.google.android.material.chip.ChipGroup>
 
 
-    <LinearLayout
-        android:id="@+id/add_system_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/lab_id_edt"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Lab Id"
-            android:inputType="text"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/find_lab_id_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:padding="@dimen/_10sdp"
-            android:text="Find Lab Id"
-            android:textColor="@color/white" />
+            <LinearLayout
+                android:id="@+id/add_system_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/working_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:checked="true"
-            android:padding="@dimen/_10sdp"
-            android:text="Working"
-            android:textColor="@color/black"
-            app:thumbTint="@color/white"
-            app:trackTint="#5434C7" />
+                <EditText
+                    android:id="@+id/lab_id_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Lab Id"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black" />
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/keyboard_working_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:checked="true"
-            android:padding="@dimen/_10sdp"
-            android:text="Keyboard Working"
-            android:textColor="@color/black"
-            app:thumbTint="@color/white"
-            app:trackTint="#5434C7" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/find_lab_id_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Find Lab Id"
+                    android:textColor="@color/white" />
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/mouse_working_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:checked="true"
-            android:padding="@dimen/_10sdp"
-            android:text="Mouse Working"
-            android:textColor="@color/black"
-            app:thumbTint="@color/white"
-            app:trackTint="#5434C7" />
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/working_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:checked="true"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Working"
+                    android:textColor="@color/black"
+                    app:thumbTint="@color/white"
+                    app:trackTint="#5434C7" />
 
-        <com.avinash.viginfomanager.CustomViews.Button
-            android:id="@+id/add_system_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="Add System" />
-    </LinearLayout>
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/keyboard_working_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:checked="true"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Keyboard Working"
+                    android:textColor="@color/black"
+                    app:thumbTint="@color/white"
+                    app:trackTint="#5434C7" />
 
-    <LinearLayout
-        android:id="@+id/add_lab_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <EditText
-            android:id="@+id/lab_name_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Lab Name(Room No)"
-            android:inputType="text"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/lab_des_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Lab Description"
-            android:inputType="text"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/floor_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Floor"
-            android:inputType="number"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/block_id_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Block Id"
-            android:inputType="text"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/find_block_id_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:padding="@dimen/_10sdp"
-            android:text="Find Block Id"
-            android:textColor="@color/white" />
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/mouse_working_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:checked="true"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Mouse Working"
+                    android:textColor="@color/black"
+                    app:thumbTint="@color/white"
+                    app:trackTint="#5434C7" />
 
 
-        <EditText
-            android:id="@+id/incharge_mob_no_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Incharge Mobile No"
-            android:inputType="text"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black" />
+                <EditText
+                    android:id="@+id/pc_count_multiplier_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Multiplier For PC Count"
+                    android:inputType="number"
+                    android:padding="@dimen/_10sdp"
+                    android:text="0"
+                    android:textColor="@color/black" />
 
-        <com.avinash.viginfomanager.CustomViews.Button
-            android:id="@+id/add_lab_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:text="Add Lab" />
-    </LinearLayout>
+                <com.avinash.viginfomanager.CustomViews.Button
+                    android:id="@+id/add_system_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="Add System" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/add_lab_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/lab_name_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Lab Name(Room No)"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/lab_des_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Lab Description"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/floor_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Floor"
+                    android:inputType="number"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/block_id_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Block Id"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/find_block_id_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Find Block Id"
+                    android:textColor="@color/white" />
+
+
+                <EditText
+                    android:id="@+id/incharge_mob_no_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Incharge Mobile No"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black" />
+
+                <com.avinash.viginfomanager.CustomViews.Button
+                    android:id="@+id/add_lab_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text="Add Lab" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

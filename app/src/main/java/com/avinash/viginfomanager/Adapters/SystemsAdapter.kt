@@ -15,7 +15,10 @@ class SystemsAdapter(val activity: Activity) : RecyclerView.Adapter<SystemsAdapt
 
     var systems = ArrayList<System>()
         set(value) = run {
-            field = value
+            var sortedList = value.sortedBy { it.id }
+            sortedList = sortedList.sortedBy { it.working }
+
+            field = ArrayList(sortedList)
             notifyDataSetChanged()
         }
 
