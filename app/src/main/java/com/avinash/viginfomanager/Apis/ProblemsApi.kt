@@ -5,7 +5,6 @@ import com.avinash.viginfomanager.Apis.Responses.Block
 import com.avinash.viginfomanager.Apis.Responses.Lab
 import com.avinash.viginfomanager.Apis.Responses.NormResponse
 import com.avinash.viginfomanager.Apis.Responses.Problem
-import com.avinash.viginfomanager.Apis.Responses.System
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body

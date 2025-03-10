@@ -2,7 +2,6 @@ package com.avinash.viginfomanager.Apis
 
 import com.avinash.viginfomanager.Apis.Responses.NormResponse
 import com.avinash.viginfomanager.Apis.Responses.Report
-import com.avinash.viginfomanager.Apis.Responses.SystemInfo
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body

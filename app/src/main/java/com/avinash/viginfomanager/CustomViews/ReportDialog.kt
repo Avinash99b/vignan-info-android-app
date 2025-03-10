@@ -8,7 +8,6 @@ import com.avinash.viginfomanager.Apis.Apis
 import com.avinash.viginfomanager.Apis.DataManager
 import com.avinash.viginfomanager.Apis.RequestUtils
 import com.avinash.viginfomanager.Apis.Responses.NormResponse
-import com.avinash.viginfomanager.Apis.Responses.SystemInfo
 import com.avinash.viginfomanager.databinding.DialogReportSysProblemBinding
 import com.google.gson.JsonObject
 import retrofit2.Call

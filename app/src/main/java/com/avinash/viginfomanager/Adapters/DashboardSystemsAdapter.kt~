@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.avinash.viginfomanager.Apis.Apis
 import com.avinash.viginfomanager.Apis.DataManager
 import com.avinash.viginfomanager.Apis.RequestUtils
-import com.avinash.viginfomanager.Apis.Responses.SystemInfo
 import com.avinash.viginfomanager.databinding.RecyclerLayoutPrevVisitedSystemsBinding
 import com.avinash.viginfomanager.R
 import com.avinash.viginfomanager.SystemDetailsActivity

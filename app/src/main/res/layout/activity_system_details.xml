@@ -12,20 +12,21 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize">
+
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/back_icon"
             android:padding="@dimen/_10sdp"
+            android:src="@drawable/back_icon"
             app:tint="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="System Details"
             android:fontFamily="@font/roboto_bold"
+            android:text="System Details"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -34,32 +35,33 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/bookmark_btn"
-            android:src="@drawable/report_icon"
             android:padding="@dimen/_10sdp"
+            android:src="@drawable/report_icon"
             app:tint="#FF0000" />
+
         <ImageView
             android:id="@+id/bookmark_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/bookmark_icon"
             android:padding="@dimen/_10sdp"
+            android:src="@drawable/bookmark_icon"
             app:tint="#CDDC39" />
     </RelativeLayout>
 
     <View
-        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="3dp"
+        android:layout_below="@id/toolbar"
         android:background="@drawable/shadow_reverse" />
 
     <ScrollView
         android:id="@+id/top_layout"
-        android:layout_below="@id/toolbar"
-        android:layout_above="@id/submit_btn"
-        android:layout_marginTop="3dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/submit_btn"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="3dp">
 
         <!-- Top Layout with Toolbar -->
         <LinearLayout
@@ -238,6 +240,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/upload_speed_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
@@ -289,6 +292,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/serial_no_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
@@ -303,9 +307,11 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toEndOf="@id/serial_no_tv"
                     android:background="@drawable/empty_edt_bg"
                     android:hint="Serial No"
                     android:inputType="number"
+                    android:scrollHorizontally="true"
                     android:textColor="@color/black" />
             </RelativeLayout>
 
@@ -367,6 +373,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/processor_name_tc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
@@ -381,9 +388,11 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toEndOf="@+id/processor_name_tc"
                     android:background="@drawable/empty_edt_bg"
                     android:hint="Storage Space"
                     android:inputType="number"
+                    android:scrollHorizontally="true"
                     android:textColor="@color/black" />
             </RelativeLayout>
 

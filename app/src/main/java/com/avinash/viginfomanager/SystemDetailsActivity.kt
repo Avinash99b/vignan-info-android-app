@@ -112,6 +112,13 @@ class SystemDetailsActivity : AppCompatActivity() {
                         binding.edtDownloadSpeed.setText(if (systemDetails.download_speed == null) "0" else systemDetails.download_speed.toString())
                         binding.edtUploadSpeed.setText(if (systemDetails.upload_speed == null) "0" else systemDetails.upload_speed.toString())
                         binding.edtPingSpeed.setText(if (systemDetails.ping == null) "0" else systemDetails.ping.toString())
+                        binding.edtSerialNo.setText(if (systemDetails.serial_no == null) "" else systemDetails.serial_no.toString())
+                        binding.edtStorageSpace.setText(if (systemDetails.storage == null) "" else systemDetails.storage.toString())
+                        binding.edtRamSize.setText(if (systemDetails.ram == null) "" else systemDetails.ram.toString())
+                        binding.edtProcessor.setText(if (systemDetails.processor == null) "" else systemDetails.processor.toString())
+                        binding.keyboardWorkingSwitch.isChecked = systemDetails.keyboard_working
+                        binding.mouseWorkingSwitch.isChecked = systemDetails.mouse_working
+
 
                         binding.bookmarkBtn.setOnClickListener {
                             if (isBookmarked) {

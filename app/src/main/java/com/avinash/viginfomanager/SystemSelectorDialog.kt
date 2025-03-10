@@ -11,8 +11,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.avinash.viginfomanager.Apis.Responses.System
 import com.avinash.viginfomanager.databinding.BottomSheetSelectorBinding
+import com.avinash.viginfomanager.Apis.Responses.System
 
 class SystemSelectorDialog(val activity: Activity):BottomSheetDialog(activity) {
     private val binding: BottomSheetSelectorBinding = BottomSheetSelectorBinding.inflate(layoutInflater)
