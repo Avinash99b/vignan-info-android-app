@@ -61,6 +61,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="#9E000000"
                 android:textSize="16sp"
+                android:text="221fe04005"
                 android:id="@+id/email_input"
                 android:hint="Register No"
                 android:inputType="textEmailAddress" />
@@ -84,6 +85,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/edit_text_bg"
                 android:hint="Password"
+                android:text="Avinash@99"
                 android:inputType="textPassword"
                 android:padding="12dp"
                 android:textColor="@color/black"
